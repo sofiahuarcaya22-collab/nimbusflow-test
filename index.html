@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>NimbusFlow - Software de Automatización</title>
+
+  <!-- Google Tag Manager (reemplazá GTM-XXXXXXX por tu ID real) -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body<main style="font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px;">
+  <h2>NimbusFlow - Soluciones Cloud B2B</h2>
+  <p>Automatización inteligente de flujos de trabajo empresariales.</p>
+
+  <hr style="margin: 20px 0;" />
+
+  <!-- Formulario simulado de Demo -->
+  <section>
+    <h3>Solicitar Demo personalizada</h3>
+    
+    <label for="tier">Plan de interés:</label><br />
+    <select id="tier" style="margin-bottom: 10px; padding: 6px;">
+      <option value="growth">Plan Growth</option>
+      <option value="enterprise">Plan Enterprise</option>
+    </select>
+    <br />
+
+    <label for="company_size">Tamaño de empresa:</label><br />
+    <select id="company_size" style="margin-bottom: 15px; padding: 6px;">
+      <option value="11-50">11 a 50 empleados</option>
+      <option value="51-200">51 a 200 empleados</option>
+      <option value="200+">Más de 200 empleados</option>
+    </select>
+    <br />
+
+    <!-- Botón 1: Lead inicial -->
+    <button type="button" onclick="dispararLead()" style="padding: 10px 16px; margin-right: 10px;">
+      Registrar interés (Lead)
+    </button>
+
+    <!-- Botón 2: Demo confirmada (Conversión principal) -->
+    <button type="button" onclick="dispararDemo()" style="padding: 10px 16px; background-color: #0066cc; color: white; border: none; border-radius: 4px;">
+      Agendar Demo (Conversión)
+    </button>
+  </section>
+</main>
+
+<script>
+  // Evento 1: Lead simple
+  function dispararLead() {
+    var tierSeleccionado = document.getElementById('tier').value;
+    
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'generate_lead',
+      'lead_type': 'inbound_form',
+      'software_tier': tierSeleccionado,
+      'currency': 'USD',
+      'value': 50
+    });
+
+    alert('Evento "generate_lead" enviado al Data Layer');
+  }
+
+  // Evento 2: Demo agendada (con event_id para deduplicación)
+  function dispararDemo() {
+    var tierSeleccionado = document.getElementById('tier').value;
+    var tamanoEmpresa = document.getElementById('company_size').value;
+    var uniqueEventId = 'nimbus_' + Date.now();
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'demo_request',
+      'software_tier': tierSeleccionado,
+      'company_size': tamanoEmpresa,
+      'currency': 'USD',
+      'value': tierSeleccionado === 'enterprise' ? 400 : 150,
+      'event_id': uniqueEventId
+    });
+
+    alert('Evento "demo_request" enviado al Data Layer con event_id: ' + uniqueEventId);
+  }
+</script>
+>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <h1>NimbusFlow: Automatizá los flujos de tu empresa</h1>
+  <p>Software B2B para optimizar operaciones.</p>
+  
+  <button id="btn-demo" onclick="solicitarDemo()">Solicitar Demo Gratuita</button>
+
+  <script>
+    function solicitarDemo() {
+      // Disparo de evento al Data Layer para GTM
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'demo_request',
+        'software_tier': 'enterprise',
+        'currency': 'USD',
+        'value': 250
+      });
+      alert('¡Demo solicitada! Evento enviado al Data Layer.');
+    }
+  </script>
+</body>
+</html>
